@@ -8,9 +8,11 @@ $app->config('debug', true);
 
 $app->get('/', function() {
     
-	$teste = new DB\Sql;
+	$teste = new DB\Rifa;
+	$resultados = $teste->Getlist();
 
-	var_dump($teste);
+	echo json_encode($resultados);
+	
 
 });
 

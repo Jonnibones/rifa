@@ -1,0 +1,152 @@
+* {box-sizing: border-box;}
+
+body { 
+ background-color: #F1F1F1;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #010101;
+  padding: 20px 10px;
+}
+
+.header a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 15px;
+  border-radius: 4px;
+}
+
+.header a.logo {
+  font-size: 75px;
+  font-weight: bold;
+  font-family: Bebas neue;
+  color: #D30908;
+}
+
+#copy{
+	font-size: 25px;
+}
+
+.header a:hover {
+  background-color: transparent;
+  color: red;
+}
+
+.header a.active {
+  background-color: #FD0100;
+  color: white;
+}
+
+.header-right {
+  float: right;
+
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .header-right {
+    float: none;
+  }
+}
+
+#container_bemvindo {
+background: #ff4635; /* Old browsers */
+background: -moz-linear-gradient(left, #ff4635 34%, #cf0404 99%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, #ff4635 34%,#cf0404 99%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, #ff4635 34%,#cf0404 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff4635', endColorstr='#cf0404',GradientType=1 ); /* IE6-9 */
+max-width: 100%;
+height: 450px;
+float: none;
+display: block;
+padding-top: 20px;
+}
+
+.bemvindo {
+  font-family:  Bebas neue;
+  text-shadow: 1px 1px 2px red; 
+  text-align: center;
+  font-size: 90px;
+  color: white;
+}
+
+@media(max-width: 425px) {
+ .bemvindo{
+  font-size: 40px;
+ }
+}
+
+#trevoimg {
+  width:20%;
+  height: auto;
+  transition: width 1s;
+}
+
+@media(max-width: 425px) {
+ #trevoimg{
+  width:80%;
+  height: auto;
+  transition: width 1s;
+ }
+}
+
+#trevoimg:hover {
+  width:23%;
+}
+
+.titulo_conferir {
+  font-family:  Bebas neue;
+  text-shadow: 1px 1px 2px red; 
+  text-align: center;
+  font-size: 90px;
+  color: #40BA4F;
+}
+
+@media(max-width: 425px) {
+ .titulo_conferir{
+  font-size: 40px;
+ }
+}
+
+.container_conferir{
+  padding: 30px;
+}
+
+.container_rifas {
+  padding-bottom: 80px;
+}
+
+.nome_rifa {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+button {
+  margin-top: 20px;
+}
+
+.container_icones {
+  padding-top: 100px;
+  background-color: #DBD6D4;
+}
+
+#icones {
+  padding-bottom: 20px;
+}
+
+.lead {
+  font-size:30px;
+  text-align: center;
+}

@@ -2,7 +2,7 @@
 
 require __DIR__.'/vendor/autoload.php';
 require __DIR__.'/vendor/rifacls/src/temps/header.html';
-require __DIR__.'/vendor/rifacls/src/temps/main.html';
+require __DIR__.'/vendor/rifacls/src/temps/index/mainindex.html';
 require __DIR__.'/vendor/rifacls/src/temps/footer.html';
 
 $app = new \Slim\Slim();

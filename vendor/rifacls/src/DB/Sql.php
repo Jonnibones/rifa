@@ -11,7 +11,7 @@ class Sql
 	const USERNAME = "root";
 	const PASSWORD = "";
 	const DBNAME = "bd_rifa";
-	private $conn; 
+	protected $conn; 
 
 	function __construct()
 	{
@@ -20,15 +20,9 @@ class Sql
 			host=".Sql::HOSTNAME,
 			Sql::USERNAME,
 			Sql::PASSWORD
-	);
-			}
-
-	public function Select($rawquery)
-	{
-		$stmt = $this->conn->prepare($rawquery);
-		$stmt->execute();
-		return $stmt->fetchALL(\PDO::FETCH_ASSOC);
+		);
 	}
+
 }//fim da classe
 
 

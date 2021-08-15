@@ -37,24 +37,24 @@
     <div class="col-sm">
     	<h3 class="nome_rifa">Cadastre-se</h3>
 
-   <form>
+   <form method="POST" action="user">
   <div class="mb-3">
 
 <div class="mb-3">
     <label for="exampleInputName" class="form-label">Nome</label>
-    <input type="text" class="form-control" id="exampleInputNome" aria-describedby="nameHelp">
+    <input type="text" name="inp_nome" class="form-control" id="exampleInputNome" aria-describedby="nameHelp">
   </div>
   	
     <label for="exampleInputEmail1" class="form-label">Email</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input type="email" name="inp_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
   </div>
 
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Crie uma senha</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
+    <input type="password" name="inp_pass" class="form-control" id="exampleInputPassword1">
   </div>
   
-  <button type="submit" class="btn btn-primary">Cadastrar</button>
+  <button type="submit" name="btn_cad" class="btn btn-primary">Cadastrar</button>
   <div class="mb-3">
     
   </div>

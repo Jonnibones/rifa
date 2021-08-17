@@ -16,10 +16,9 @@ $app->get('/minha-conta', function() {
 $app->get('/user', function() {
 	require __DIR__.'/vendor/rifacls/src/temps/user/user.html';
 });
-$app->post('/user', function() {
-	require __DIR__.'/vendor/rifacls/src/temps/user/user.html';
-});
-
+/*$app->post('/process_user', function() {
+	require __DIR__.'/vendor/rifacls/src/process/process_user.php';
+});*/
 
 $app->run();
 

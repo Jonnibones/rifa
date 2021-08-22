@@ -1,10 +1,11 @@
 <?php 
 
 require __DIR__.'/vendor/autoload.php';
+
+//Cabeçalho
 require __DIR__.'/vendor/rifacls/src/temps/header.html';
 
-
-
+//Instâcia do Slim
 $app = new \Slim\Slim();
 
 $app->get('/', function() {

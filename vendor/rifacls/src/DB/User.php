@@ -2,9 +2,6 @@
 
 namespace DB;
 
-/**
- * 
- */
 class User extends Sql
 {
 	private $id_user;
@@ -64,20 +61,31 @@ class User extends Sql
 		$this->date_user = $value;
 	}
 
+
+
 	public function insert_User()
 	{
-		$stmt = $this->conn->prepare("INSERT INTO bd_rifa.tb_user(nome_user, email_user, senha_user) VALUES(?,?,?)");
-		$stmt->bindParam(1,$this->nome_user, \PDO::PARAM_STR);
-		$stmt->bindParam(2,$this->email_user, \PDO::PARAM_STR);
-		$stmt->bindParam(3,$this->senha_user, \PDO::PARAM_STR);
+		$stmt = $this->conn->prepare("SELECT * FROM bd_rifa.tb_user WHERE email_user = ? ");
+		$stmt->bindParam(1,$this->email_user,\PDO::PARAM_STR);
 		$stmt->execute();
-		if ($stmt->rowCount()) 
+		if ($stmt->rowCount() == 0) 
 		{
-			$res = "Registro inserido";
+			$stmt = $this->conn->prepare("INSERT INTO bd_rifa.tb_user(nome_user, email_user, senha_user) VALUES(?,?,?)");
+			$stmt->bindParam(1,$this->nome_user, \PDO::PARAM_STR);
+			$stmt->bindParam(2,$this->email_user, \PDO::PARAM_STR);
+			$stmt->bindParam(3,$this->senha_user, \PDO::PARAM_STR);
+			$stmt->execute();
+			if ($stmt->rowCount()) 
+			{
+				$res = "Cadastrado com sucesso!";
+			}else
+			{
+				$res = "Registro não inserido";
+			}
 		}else
 		{
-			$res = "Registro não inserido";
-		}
+			$res = "Este e-mail já está cadastrado!";
+		}	
 		return $res;
 	}
 

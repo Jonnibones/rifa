@@ -38,14 +38,19 @@
     <div class="col-sm">
     	<h3 class="nome_rifa">Cadastre-se</h3>
 
+      <div class="alert alert-<?php if(isset($_SESSION['alert'])){echo $_SESSION['alert'];} ?>">
+         <?php
+    if(isset($_SESSION['msg-cad']))
+    {
+      echo $_SESSION['msg-cad'];
+      unset($_SESSION['msg-cad']);
+      unset($_SESSION['alert']);
+    }
+    ?>
+      </div>
+   
    <form method="POST" action="vendor/rifacls/src/process/process_user.php">
   <div class="mb-3">
-
-<?php if(isset($_SESSION['msg-cad'])){
-var_dump($_SESSION['msg-cad']);
-unset($_SESSION['msg-cad']);
-}
-?>
 
 <div class="mb-3">
     <label for="exampleInputName" class="form-label">Nome</label>

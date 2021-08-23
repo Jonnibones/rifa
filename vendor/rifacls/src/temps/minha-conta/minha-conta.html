@@ -1,5 +1,4 @@
 <section>
-  <?php session_start();?>
 		<div id="container_minhaconta" class="container-fluid">
 			<center><h1 class="entre">Entre ou cadastre-se</h1></center>
 		</div>
@@ -11,24 +10,35 @@
 			<div class="row">
 
     <div class="col-sm">
+      <div class="alert alert-<?php if(isset($_SESSION['alert-log'])){echo $_SESSION['alert-log'];} ?>">
+         <?php
+    if(isset($_SESSION['msg-log']))
+    {
+      var_dump($_SESSION['msg-log']);
+      unset($_SESSION['msg-log']);
+      unset($_SESSION['alert-log']);
+    }
+    ?>
+      </div>
     	<h3 class="nome_rifa">Entrar</h3>
 
-   <form>
+<!--Formulário Login-->
+   <form method="POST" action="vendor/rifacls/src/process/login_user.php">
 
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input name="inp_login" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
   </div>
 
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Senha</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
+    <input name="inp_senha" type="password" class="form-control" id="exampleInputPassword1">
   </div>
   <div class="mb-3 form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Lembrar-me</label>
   </div>
-  <button type="submit" class="btn btn-success">Entrar</button>
+  <button type="submit" name="btn_login" class="btn btn-success">Entrar</button>
   <div class="mb-3">
     <a href="#">Perdeu a senha?</a>
   </div>
@@ -36,20 +46,21 @@
     </div>
 
     <div class="col-sm">
-    	<h3 class="nome_rifa">Cadastre-se</h3>
 
-      <div class="alert alert-<?php if(isset($_SESSION['alert'])){echo $_SESSION['alert'];} ?>">
+        <div class="alert alert-<?php if(isset($_SESSION['alert-cad'])){echo $_SESSION['alert-cad'];} ?>">
          <?php
     if(isset($_SESSION['msg-cad']))
     {
       echo $_SESSION['msg-cad'];
       unset($_SESSION['msg-cad']);
-      unset($_SESSION['alert']);
+      unset($_SESSION['alert-cad']);
     }
     ?>
       </div>
-   
-   <form method="POST" action="vendor/rifacls/src/process/process_user.php">
+
+    	<h3 class="nome_rifa">Cadastre-se</h3>
+   <!--Formulário Cadastro-->
+   <form method="POST" action="vendor/rifacls/src/process/cadastrar_user.php">
   <div class="mb-3">
 
 <div class="mb-3">

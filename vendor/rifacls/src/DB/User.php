@@ -41,8 +41,7 @@ class User extends Sql
 	}
 	public function setSenha_user($value)
 	{
-		$hash = password_hash($value, PASSWORD_DEFAULT);
-		$this->senha_user = $hash;
+		$this->senha_user = $value;
 	}
 	public function getTel_user()
 	{
@@ -60,8 +59,6 @@ class User extends Sql
 	{
 		$this->date_user = $value;
 	}
-
-
 
 	public function insert_User()
 	{
@@ -94,6 +91,22 @@ class User extends Sql
 		$stmt = $this->conn->prepare("SELECT * FROM bd_rifa.tb_user");
 		$stmt->execute();
 		return json_encode($stmt->fetchAll(\PDO::FETCH_ASSOC));
+	}
+
+	public function getnome_Logged($email)
+	{
+		$stmt = $this->conn->prepare("SELECT nome_user FROM bd_rifa.tb_user WHERE email_user = ? LIMIT 1");
+		$stmt->bindParam(1,$email,\PDO::PARAM_STR);
+		$stmt->execute();
+		$results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+		foreach ($results as $result)
+		 {
+			foreach ($result as $valor) 
+			{
+				$res = $valor;			
+			}
+		}
+		return $res;
 	}
 
 	public function getuserby_Id($id)
@@ -135,6 +148,25 @@ class User extends Sql
 			$res = "Registro não editado";
 		}
 		return $res;
+	}
+
+	public function login_User()
+	{
+
+		$stmt = $this->conn->prepare("SELECT senha_user FROM bd_rifa.tb_user WHERE email_user = ?");
+		$stmt->bindParam(1,$this->email_user,\PDO::PARAM_STR);
+		$stmt->execute();
+		$results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+		foreach ($results as  $result) 
+		{
+			foreach ($result as $valor) {
+				$res = $valor;
+			}
+		}
+
+		return $res;
+
+
 	}
 
 }//fim da classe

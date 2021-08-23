@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +17,18 @@
   			<div class="header-right">
     		<a href="/rifa2" class="active">Home</a>
     		<a href="user" id="contact">Contato</a>
-    		<a href="minha-conta" id="about">Entrar</a>
+        <?php
+          if(isset($_SESSION['nome_user']))
+          {
+            echo "<a href='minha-conta' id='contact'>Bem-vindo<br><br>".$_SESSION['nome_user']."</a>";
+            echo "<a href='minha-conta' id='contact'>Sair</a>";
+
+          }else
+          {
+            echo "<a href='minha-conta' id='about'>Entrar</a>";
+          }
+        ?>
+    		
   			</div>
 		</div>
 	</section>

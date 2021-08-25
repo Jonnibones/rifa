@@ -20,16 +20,15 @@ if(isset($_POST['btn_login']))
 		{
 			$_SESSION['msg-log'] = "Logado com sucesso!";
 			$_SESSION['alert-log'] = "success";
-
-			$nome = $user->getnome_Logged($user->getEmail_user());
-			$_SESSION['nome_user'] = $nome;
-			$_SESSION['hidden'] = 'hidden';
+			$_SESSION['entrou'] = "entrou";
+			$_SESSION['nome'] = $user->getnome_Logged($user->getEmail_user());
+			$_SESSION['hidden'] = "hidden";
 
 		}
 		else
 		{
-		$_SESSION['msg-log'] = "Login e(ou) senha incorretos.";
-		$_SESSION['alert-log'] = "danger";
+			$_SESSION['msg-log'] = "Login e(ou) senha incorretos.";
+			$_SESSION['alert-log'] = "danger";
 		}
 		header('Location:http://localhost/rifa2/minha-conta');
 	}

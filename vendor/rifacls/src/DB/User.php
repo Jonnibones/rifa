@@ -152,7 +152,6 @@ class User extends Sql
 
 	public function login_User()
 	{
-
 		$stmt = $this->conn->prepare("SELECT senha_user FROM bd_rifa.tb_user WHERE email_user = ?");
 		$stmt->bindParam(1,$this->email_user,\PDO::PARAM_STR);
 		$stmt->execute();

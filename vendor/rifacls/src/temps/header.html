@@ -15,17 +15,16 @@ session_start();
 		<div class="header">
   			<a href="/rifa2" class="logo">Rifabr<span id="copy">&copy;</span></a>
   			<div class="header-right">
-    		<a href="/rifa2" class="active">Home</a>
-    		<a href="user" id="contact">Contato</a>
+    		<a href="/rifa2" id="home">Home</a>
+    		<a href="user" id="contato">Contato</a>
         <?php
-          if(isset($_SESSION['nome_user']))
+          if(isset($_SESSION['entrou']))
           {
-            echo "<a href='minha-conta' id='contact'>Bem-vindo<br><br>".$_SESSION['nome_user']."</a>";
-            echo "<a href='minha-conta' id='contact'>Sair</a>";
-
+            echo "<a href='minha-conta' id='minha-conta'>Minha conta</a>";
+            echo "<a href='vendor/rifacls/src/process/sair.php' id='sair'>Sair</a>";
           }else
           {
-            echo "<a href='minha-conta' id='about'>Entrar</a>";
+            echo "<a href='minha-conta' id='entrar'>Entrar</a>";
           }
         ?>
     		

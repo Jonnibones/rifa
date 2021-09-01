@@ -4,30 +4,53 @@
 			<center><img id="img_header" class="img-fluid" src="\rifa2\vendor\rifacls\src\temps\images/trevo.png"></center>
 		</div>
 	</section>
+
+
 	<section>
 		<div id="container_conferir" class="container-fluid" >		
 			<h1 class="titulo_conferir">Confira abaixo as rifas diponíveis:</h1>
 		</div>
+
 		<div id="container_rifas" class="container-fluid">
 			<div class="row">
-    <div class="col-sm">
-    	<h3 class="nome_rifa">Rifa 1</h3>
-      <center><img id="prod_img" class="img-fluid" src="\rifa2\vendor\rifacls\src\temps\images/trevo.png"></center>
-       <center><button type="button" class="btn btn-primary">Comprar número</button></center>
-    </div>
-    <div class="col-sm">
-    	<h3 class="nome_rifa">Rifa 2</h3>
-      <center><img id="prod_img" class="img-fluid" src="\rifa2\vendor\rifacls\src\temps\images/trevo.png"></center>
-      <center><button type="button" class="btn btn-primary">Comprar número</button></center>
-    </div>
-    <div class="col-sm">
-    	<h3 class="nome_rifa">Rifa 3</h3>
-      <center><img id="prod_img" class="img-fluid" src="\rifa2\vendor\rifacls\src\temps\images/trevo.png"></center>
-      <center><button type="button" class="btn btn-primary">Comprar número</button></center>
-    </div>
+
+        <?php
+// Imagem a ser convertida 
+$img = file_get_contents( 
+ 'c:\xampp\htdocs\rifa2\vendor\rifacls\src\temps\images\trevo.png'); 
+// Codifica / Converte a imagem para base64 
+$data = base64_encode($img); 
+// Mostra o resultado
+//echo $data; 
+?>
+<!--<img src="data:image/png;base64,<?php echo $data;?>">-->
+<?php        
+if(isset($_SESSION['rifas']))
+{
+    $cont = 0;
+    foreach($_SESSION['rifas'] as $key)
+    {
+    $imagem = $_SESSION['rifas'][$cont]['img_rifa'];
+    echo "
+    <div class='col-sm'>
+    	<h3 class='nome_rifa'>".$_SESSION['rifas'][$cont]['nome_prod']."</h3>
+      <img src='data:image/png;base64, $imagem'>
+      <center><p>".$_SESSION['rifas'][$cont]['descr_prod']."</p></center>
+      <center><button type='button' class='btn btn-primary'>Comprar número</button></center>
+      <center><p>Data do sorteio: " .date('d-m-Y', strtotime($_SESSION['rifas'][$cont]['date_exp']))."</p></center>
+    </div>";
+    $cont++;
+    }
+ }else
+ {
+    echo "<h3>Nenhuma rifa disponível.</h3>";
+ } 
+?>
+
   </div>
 		</div>
 	</section>
+
 	<section>
 		<div id="container_icones" class="container-fluid">
 			<div class="row">

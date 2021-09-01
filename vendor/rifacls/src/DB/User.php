@@ -109,12 +109,20 @@ class User extends Sql
 		return $res;
 	}
 
-	public function getuserby_Id($id)
+	public function getuserby_Login($email)
 	{
-		$stmt = $this->conn->prepare("SELECT * FROM bd_rifa.tb_user WHERE id_user = ? LIMIT 1");
-		$stmt->bindParam(1,$id,\PDO::PARAM_INT);
+		$stmt = $this->conn->prepare("SELECT nome_user, email_user, date_user FROM bd_rifa.tb_user WHERE email_user = ? LIMIT 1");
+		$stmt->bindParam(1,$email,\PDO::PARAM_STR);
 		$stmt->execute();
-		return json_encode($stmt->fetchAll(\PDO::FETCH_ASSOC));
+		$results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+		foreach ($results as $result) 
+		{
+			foreach ($result as $value) 
+			{
+				$res[] = $value;
+			}
+		}
+		return $res;
 	}
 
 	public function delete_user($id)
@@ -158,15 +166,15 @@ class User extends Sql
 		$results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 		foreach ($results as  $result) 
 		{
-			foreach ($result as $valor) {
+			foreach ($result as $valor) 
+			{
 				$res = $valor;
 			}
 		}
-
 		return $res;
-
-
 	}
+  
+//"SELECT nome_user, nome_prod FROM bd_rifa.tb_user INNER JOIN bd_rifa.tb_rifa ON tb_user.id_rifa = tb_rifa.id_rifa"
 
 }//fim da classe
 

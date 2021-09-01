@@ -23,6 +23,7 @@ if(isset($_POST['btn_login']))
 			$_SESSION['entrou'] = "entrou";
 			$_SESSION['nome'] = $user->getnome_Logged($user->getEmail_user());
 			$_SESSION['hidden'] = "hidden";
+			$_SESSION['dados_user'] = $user->getuserby_Login($user->getEmail_user());
 
 		}
 		else

@@ -146,10 +146,16 @@ padding-top: 20px;
   padding-bottom: 80px;
 }
 
+#nome_produto {
+  color:red;
+}
+
 .nome_rifa {
   padding-top: 30px;
   padding-bottom: 30px;
   text-align: center;
+  font-family:  Bebas neue;
+  color:red;
 }
 button {
   margin-top: 20px;
@@ -247,5 +253,7 @@ padding-top: 150px;
 }
 }
 #coluna-detalhes-conta {
- padding-top: 12%;
+ color:red;
 }
+/** Fim Estilo da minha-conta **/
+

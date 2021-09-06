@@ -1,7 +1,7 @@
 <section>
 		<div id="container_minhaconta" class="container-fluid">
-			<center><h1 class="entre">Bem-vindo <?php if(isset($_SESSION['nome'])){ echo $_SESSION['nome'];
-        }?></h1></center>
+			<center><h1 id="h1_entrar">Bem-vindo 
+        <?php  if(isset($_SESSION['dados_user'])){ echo "<br>". $_SESSION['dados_user'][0]['nome_user'];} ?></h1></center>
 		</div>
 </section>
 
@@ -33,7 +33,7 @@ echo "<section hidden>";
       </div>
 
       <!--Formulário Login-->
-    	<h3 class="nome_rifa">Entrar</h3>
+    	<center><h3 class="nome_rifa">Entrar</h3></center>
    <form method="POST" action="vendor/rifacls/src/process/login_user.php">
 
   <div class="mb-3">
@@ -70,7 +70,7 @@ echo "<section hidden>";
         </div>
 
            <!--Formulário Cadastro-->
-      	<h3 class="nome_rifa">Cadastre-se</h3>
+      	<center><h3 class="nome_rifa">Cadastre-se</h3></center>
         <form method="POST" action="vendor/rifacls/src/process/cadastrar_user.php">
 
           <div class="mb-3">
@@ -124,34 +124,59 @@ echo "<section>";
               }
               ?>
           </div>
-          <h3 class="nome_rifa">Minha conta</h3>
+            <h3 id="h3_minhaconta">Minha conta</h3>
             <div class="list-group">
                <ul>
                  <li class="list-group-item list-group-item-action"><a href="#" >Painel </a></li>
-                 <li class="list-group-item list-group-item-action"><a href="#" >Minhas rifas</a></li>
+                 <li class="list-group-item list-group-item-action"><a href="vendor/rifacls/src/process/minhas_rifas.php" >Minhas rifas</a></li>
                  <li class="list-group-item list-group-item-action"><a href="#" >Adicionar telefone</a></li>
-                 <li class="list-group-item list-group-item-action"><a href="#" >Sair</a></li>
+                 <li class="list-group-item list-group-item-action"><a href="vendor/rifacls/src/process/sair.php" >Sair</a></li>
                </ul>
             </div>
         </div>
-
-
-          <div class="col-sm" >
-            <h3 class="nome_rifa" id="coluna-detalhes-conta">Detalhes da conta</h3>
-            <div class="list-group" >
+         <?php if(!isset($_SESSION['minhas_rifas'])): ?> 
+          <div id="coluna_detalhes" class="col-sm" >
+            <h3 id="h3_detalhesconta">Detalhes da conta</h3>
+            <div class="list-group">
               <ul>
-                <?php if(isset($_SESSION['dados_user']))
+                <?php 
+                if(isset($_SESSION['dados_user']))
                 { 
-                  echo "<li class='list-group-item list-group-item-action'>Nome: ".$_SESSION['dados_user'][0]."</li>";
-                  echo "<li class='list-group-item list-group-item-action'>E_mail: ".$_SESSION['dados_user'][1]."</li>";
-                  echo "<li class='list-group-item list-group-item-action'>Data de Registro: ".date('d-m-Y', strtotime($_SESSION['dados_user'][2]))."</li>";
-                  ;
+                  $cont = 0;
+                  foreach($_SESSION['dados_user'] as $key)
+                  {
+                  echo "<li class='list-group-item list-group-item-action'>Nome: ".$_SESSION['dados_user'][$cont]['nome_user']."</li>";
+                  echo "<li class='list-group-item list-group-item-action'>E-mail: ".$_SESSION['dados_user'][$cont]['email_user']."</li>";
+                  echo "<li class='list-group-item list-group-item-action'>Data de Registro: ".date('d-m-Y',strtotime($_SESSION['dados_user'][$cont]['date_user']))."</li>";
+                  }   
+                  $cont++; 
                 }
                 ?>
               </ul>
             </div>
           </div>
+          <?php else: ?>
 
+          <?php
+            $cont = 0;
+            foreach($_SESSION['minhas_rifas'] as $key)
+            {
+            echo "<div id='coluna_detalhes' class='col-sm'>
+              <h3 id='h3_detalhesconta'>Minhas rifas</h3>
+                <ul>
+                  <li class='list-group-item list-group-item-action'>Nome do Produto: ".$_SESSION['minhas_rifas'][$cont]['nome_prod']."</li>
+                <li class='list-group-item list-group-item-action'>Valor do número: ".$_SESSION['minhas_rifas'][$cont]['valor']."</li>
+                <li class='list-group-item list-group-item-action'> Data do Sorteio: ".date('d-m-Y', strtotime($_SESSION['minhas_rifas'][$cont]['date_exp']))."</li>
+                </ul>
+            </div>";
+            }
+            $cont++;
+          ?>
+
+          <?php endif; ?>
       </div>
     </div>
   </section>
+
+
+        

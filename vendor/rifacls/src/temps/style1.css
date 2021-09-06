@@ -61,6 +61,8 @@ body {
   }
 }
 
+
+/**Bem-vindo**/
 #container_bemvindo {
 background: #ff4635; /* Old browsers */
 background: -moz-linear-gradient(left, #ff4635 34%, #cf0404 99%); 
@@ -74,7 +76,7 @@ display: block;
 padding-top: 20px;
 }
 
-.bemvindo {
+#h1-bemvindo {
   font-family:  Bebas neue;
   text-shadow: 1px 1px 2px red; 
   text-align: center;
@@ -83,45 +85,27 @@ padding-top: 20px;
 }
 
 @media(max-width: 425px) {
- .bemvindo{
+ #h1-bemvindo {
   font-size: 40px;
  }
 }
 
-#img_header {
+#img_bemvindo {
   width:20%;
   height: auto;
   transition: width 1s;
 }
 
 @media(max-width: 425px) {
- #img_header{
+ #img_bemvindo{
   width:70%;
   height: auto;
   transition: width 1s;
  }
 }
 
-#img_header:hover {
+#img_bemvindo:hover {
   width:23%;
-}
-
-#prod_img {
-  width:40%;
-  height: auto;
-  transition: width 1s;
-}
-
-@media(max-width: 425px) {
- #prod_img{
-  width:50%;
-  height: auto;
-  transition: width 1s;
- }
-}
-
-#prod_img:hover {
-  width:50%;
 }
 
 .titulo_conferir {
@@ -142,21 +126,35 @@ padding-top: 20px;
   padding: 30px;
 }
 
-#container_rifas {
-  padding-bottom: 80px;
-}
 
-.nome_rifa {
+
+#nome_produto {
   padding-top: 30px;
   padding-bottom: 30px;
   text-align: center;
+  font-family:  Bebas neue;
+  font-size: 40px;
 }
-button {
+
+#descr_produto {
+  padding-top: 30px;
+  font-family:  Bebas neue;
+  font-size: 25px;
+}
+
+#data_sorteio {
+  padding: 30px;
+  font-family:  Bebas neue;
+  font-size: 25px;
+}
+
+#btn_comprar {
   margin-top: 20px;
 }
 
+/**Container icones**/
 #container_icones {
-  padding-top: 100px;
+  padding-top: 70px;
   background-color: #DBD6D4;
    padding-bottom: 20px;
 }
@@ -172,16 +170,16 @@ button {
  }
 }
 
-.lead {
+#lead {
   font-size:30px;
   text-align: center;
 }
 
 #coluna_icon {
   padding-bottom: 20px;
-
 }
 
+/**Container footer**/
 #container_footer {
 max-width: 100%;
 height: 450px;
@@ -212,10 +210,10 @@ background-color: black;
   height: auto;
  }
 }
-/** Fim Estilo da index **/
 
 /** Inicio Estilo da minha-conta **/
 
+/** Container minha-conta **/
 #container_minhaconta {
   background: #ff4635; /* Old browsers */
 background: -moz-linear-gradient(left, #ff4635 34%, #cf0404 99%); 
@@ -229,7 +227,11 @@ display: block;
 padding-top: 150px;
 }
 
-.entre {
+#container_rifas {
+  padding-bottom: 80px;
+}
+
+#h1_entrar {
   font-family:  Bebas neue;
   text-shadow: 1px 1px 2px red; 
   text-align: center;
@@ -238,7 +240,7 @@ padding-top: 150px;
 }
 
 @media(max-width: 425px) {
-  .entre {
+  #h1_entrar {
   font-family:  Bebas neue;
   text-shadow: 1px 1px 2px red; 
   text-align: center;
@@ -246,6 +248,10 @@ padding-top: 150px;
   color: white;
 }
 }
-#coluna-detalhes-conta {
- color:red;
+
+#coluna_detalhes {
+  padding: 50px;
 }
+
+
+

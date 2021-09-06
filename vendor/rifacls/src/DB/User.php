@@ -5,6 +5,8 @@ namespace DB;
 class User extends Sql
 {
 	private $id_user;
+	private $id_rifa;
+	private $nums_rifa;
 	private $nome_user;
 	private $email_user;
 	private $senha_user;
@@ -18,6 +20,22 @@ class User extends Sql
 	public function setId_user($value)
 	{
 		$this->id_user = $value;
+	}
+	public function getId_rifa()
+	{
+		return $this->id_rifa;
+	}
+	public function setId_rifa($value)
+	{
+		$this->id_rifa = $value;
+	}
+	public function getNums_rifa()
+	{
+		return $this->nums_rifa;
+	}
+	public function setNums_rifa($value)
+	{
+		$this->nums_rifa = $value;
 	}
 	public function getNome_user()
 	{
@@ -86,41 +104,15 @@ class User extends Sql
 		return $res;
 	}
 
-	public function getlist_User()
-	{
-		$stmt = $this->conn->prepare("SELECT * FROM bd_rifa.tb_user");
-		$stmt->execute();
-		return json_encode($stmt->fetchAll(\PDO::FETCH_ASSOC));
-	}
-
-	public function getnome_Logged($email)
-	{
-		$stmt = $this->conn->prepare("SELECT nome_user FROM bd_rifa.tb_user WHERE email_user = ? LIMIT 1");
-		$stmt->bindParam(1,$email,\PDO::PARAM_STR);
-		$stmt->execute();
-		$results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-		foreach ($results as $result)
-		 {
-			foreach ($result as $valor) 
-			{
-				$res = $valor;			
-			}
-		}
-		return $res;
-	}
-
 	public function getuserby_Login($email)
 	{
-		$stmt = $this->conn->prepare("SELECT nome_user, email_user, date_user FROM bd_rifa.tb_user WHERE email_user = ? LIMIT 1");
+		$stmt = $this->conn->prepare("SELECT id_user, nome_user, email_user, date_user FROM bd_rifa.tb_user WHERE email_user = ? LIMIT 1");
 		$stmt->bindParam(1,$email,\PDO::PARAM_STR);
 		$stmt->execute();
 		$results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 		foreach ($results as $result) 
 		{
-			foreach ($result as $value) 
-			{
-				$res[] = $value;
-			}
+				$res[] = $result;	
 		}
 		return $res;
 	}
@@ -173,6 +165,25 @@ class User extends Sql
 		}
 		return $res;
 	}
+
+	public function getlist_Minharifa($id)
+    {
+        $stmt = $this->conn->prepare("SELECT nome_prod, valor, date_exp FROM bd_rifa.tb_user INNER JOIN bd_rifa.tb_rifa ON tb_user.id_rifa = tb_rifa.id_rifa WHERE id_user = ?");
+        $stmt->bindParam(1,$id,\PDO::PARAM_INT);
+        $stmt->execute();
+        if ($stmt->rowCount()) 
+        {
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            foreach ($result as $valor)
+            {
+                    $res[] = $valor;
+            }
+        }else
+        {
+            $res = NULL;
+        }
+        return $res;
+    }
   
 //"SELECT nome_user, nome_prod FROM bd_rifa.tb_user INNER JOIN bd_rifa.tb_rifa ON tb_user.id_rifa = tb_rifa.id_rifa"
 

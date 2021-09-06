@@ -6,6 +6,10 @@ require_once('..\..\..\autoload.php');
 
 if(isset($_POST['btn_login']))
 {
+	
+	
+	
+
 	if(!empty($_POST['inp_login']) and !empty($_POST['inp_senha'])) 
 	{
 		$login = filter_input(INPUT_POST, 'inp_login', FILTER_SANITIZE_STRING);
@@ -20,11 +24,8 @@ if(isset($_POST['btn_login']))
 		{
 			$_SESSION['msg-log'] = "Logado com sucesso!";
 			$_SESSION['alert-log'] = "success";
-			$_SESSION['entrou'] = "entrou";
-			$_SESSION['nome'] = $user->getnome_Logged($user->getEmail_user());
 			$_SESSION['hidden'] = "hidden";
 			$_SESSION['dados_user'] = $user->getuserby_Login($user->getEmail_user());
-
 		}
 		else
 		{

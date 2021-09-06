@@ -1,7 +1,7 @@
 <section>
 		<div id="container_bemvindo" class="container-fluid">
-			<h1 class="bemvindo">Bem-vindo(a) ao seu site de rifas!</h1>
-			<center><img id="img_header" class="img-fluid" src="\rifa2\vendor\rifacls\src\temps\images/trevo.png"></center>
+			<h1 id="h1-bemvindo">Bem-vindo(a) ao seu site de rifas!</h1>
+			<center><img id="img_bemvindo" class="img-fluid" src="\rifa2\vendor\rifacls\src\temps\images/trevo.png"></center>
 		</div>
 	</section>
 
@@ -13,41 +13,30 @@
 
 		<div id="container_rifas" class="container-fluid">
 			<div class="row">
+        <?php        
+        if(isset($_SESSION['rifas']))
+        {
+            $cont = 0;
+            foreach($_SESSION['rifas'] as $key)
+            {
+              $imagem = $_SESSION['rifas'][$cont]['img_rifa'];
+              echo "
+              <div class='col-sm'>
+              	<h3 id='nome_produto'>".$_SESSION['rifas'][$cont]['nome_prod']."</h3>
+                <center><img class='img-fluid' src='data:image/png;base64, $imagem'></center>
+                <center><p id='descr_produto'>".$_SESSION['rifas'][$cont]['descr_prod']."</p></center>
+                <center><button id='btn_comprar' type='button' class='btn btn-primary'>Comprar número</button></center>
+                <center><p id='data_sorteio'>Data do sorteio: " .date('d-m-Y', strtotime($_SESSION['rifas'][$cont]['date_exp']))."</p></center>
+              </div>";
+              $cont++;
+            }
+         }else
+         {
+            echo "<h3>Nenhuma rifa disponível.</h3>";
+         } 
+        ?>
 
-        <?php
-// Imagem a ser convertida 
-$img = file_get_contents( 
- 'c:\xampp\htdocs\rifa2\vendor\rifacls\src\temps\images\trevo.png'); 
-// Codifica / Converte a imagem para base64 
-$data = base64_encode($img); 
-// Mostra o resultado
-//echo $data; 
-?>
-<!--<img src="data:image/png;base64,<?php echo $data;?>">-->
-<?php        
-if(isset($_SESSION['rifas']))
-{
-    $cont = 0;
-    foreach($_SESSION['rifas'] as $key)
-    {
-    $imagem = $_SESSION['rifas'][$cont]['img_rifa'];
-    echo "
-    <div class='col-sm'>
-    	<h3 class='nome_rifa'>".$_SESSION['rifas'][$cont]['nome_prod']."</h3>
-      <img src='data:image/png;base64, $imagem'>
-      <center><p>".$_SESSION['rifas'][$cont]['descr_prod']."</p></center>
-      <center><button type='button' class='btn btn-primary'>Comprar número</button></center>
-      <center><p>Data do sorteio: " .date('d-m-Y', strtotime($_SESSION['rifas'][$cont]['date_exp']))."</p></center>
-    </div>";
-    $cont++;
-    }
- }else
- {
-    echo "<h3>Nenhuma rifa disponível.</h3>";
- } 
-?>
-
-  </div>
+      </div>
 		</div>
 	</section>
 
@@ -56,17 +45,17 @@ if(isset($_SESSION['rifas']))
 			<div class="row">
     <div id="coluna_icon" class="col-sm">
       <center><i id="icones" class="fas fa-user-shield fa-8x"></i></center>
-       <p class="lead">Seus dados protegidos</p>
+       <p id="lead">Seus dados protegidos</p>
        <center><small>Lorem ipsun amnerquaedta mfjs, jfjfds</small></center>
     </div>
     <div id="coluna_icon" class="col-sm">
       <center><i id="icones" class="fa fa-credit-card fa-8x"></i></center>
-      <p class="lead">Compre com cartão de crédito</p>
+      <p id="lead">Compre com cartão de crédito</p>
       <center><small>Lorem ipsun amnerquaedta mfjs, jfjfds</small></center>
     </div>
     <div id="coluna_icon" class="col-sm">
       <center><i id="icones" class="fas fa-shield-alt fa-8x"></i></center>
-      <p class="lead">Compre com segurança</p>
+      <p id="lead">Compre com segurança</p>
       <center><small>Lorem ipsun amnerquaedta mfjs, jfjfds</small></center>
     </div>
   </div>

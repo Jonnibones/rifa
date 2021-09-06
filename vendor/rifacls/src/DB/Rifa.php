@@ -89,7 +89,6 @@ class Rifa extends Sql
 
     public function insert_Rifa()
     {
-    
         $stmt = $this->conn->prepare("INSERT INTO bd_rifa.tb_rifa(nome_prod, descr_prod, qtd_num, valor, img_rifa, date_exp) VALUES(?,?,?,?,?,?)");
         $stmt->bindParam(1,$this->nome_prod, \PDO::PARAM_STR);
         $stmt->bindParam(2,$this->descr_prod, \PDO::PARAM_STR);

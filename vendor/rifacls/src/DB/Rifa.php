@@ -2,6 +2,7 @@
 
 namespace DB;
 
+//Classe Rifa
 class Rifa extends Sql
 {
     private $id_rifa;
@@ -14,6 +15,7 @@ class Rifa extends Sql
     private $date_exp;
     private $date_rifa;
 
+//Métodos getters and setters
     public function getid_Rifa()
     {
         return $this->id_rifa;
@@ -87,6 +89,7 @@ class Rifa extends Sql
         $this->date_rifa = $value;
     }
 
+//Método responsável por inserir valores na tabela tb_rifa
     public function insert_Rifa()
     {
         $stmt = $this->conn->prepare("INSERT INTO bd_rifa.tb_rifa(nome_prod, descr_prod, qtd_num, valor, img_rifa, date_exp) VALUES(?,?,?,?,?,?)");
@@ -107,9 +110,11 @@ class Rifa extends Sql
         return $res;
     }
 
+
+//Método responsável por consultar valores na tabela tb_rifa
     public function getlist_Rifa()
     {
-        $stmt = $this->conn->prepare("SELECT id_rifa, nome_prod, descr_prod, img_rifa, date_exp FROM bd_rifa.tb_rifa LIMIT 3 ");
+        $stmt = $this->conn->prepare("SELECT id_rifa, nome_prod, descr_prod, img_rifa, qtd_num, date_exp FROM bd_rifa.tb_rifa LIMIT 2 ");
         $stmt->execute();
         if ($stmt->rowCount()) 
         {
@@ -125,6 +130,7 @@ class Rifa extends Sql
         return $res;
     }
 
+//Método responsável por consultar valores pelo id na tabela tb_rifa
     public function getrifaby_Id($id)
     {
         $stmt = $this->conn->prepare("SELECT nome_prod, descr_prod, date_exp FROM bd_rifa.tb_rifa WHERE id_rifa = ? LIMIT 1 ");
@@ -147,6 +153,7 @@ class Rifa extends Sql
         return $res;
     }
 
+//Método responsável por deletar valores pelo id na tabela tb_rifa
     public function delete_rifa($id)
     {
         $stmt = $this->conn->prepare("DELETE FROM bd_rifa.tb_rifa WHERE id_rifa = ? LIMIT 1");
@@ -162,6 +169,7 @@ class Rifa extends Sql
         return $res;
     }
 
+//Método responsável por atualizar valores na tabela tb_rifa
     public function update_Rifa($id)
     {
         $stmt = $this->conn->prepare("UPDATE bd_rifa.tb_rifa SET nome_prod = ?, descr_prod = ?, qtd_num = ?, valor = ?, date_exp = ? WHERE id_rifa = ? ");

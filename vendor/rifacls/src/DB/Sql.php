@@ -3,7 +3,7 @@
 namespace DB;
 
 /**
- * 
+ * Classe para conexão com o banco de dados
  */
 class Sql
 {

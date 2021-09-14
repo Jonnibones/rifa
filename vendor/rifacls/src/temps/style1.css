@@ -252,6 +252,39 @@ padding-top: 150px;
 #coluna_detalhes {
   padding: 50px;
 }
+/** Fim Estilo da minha-conta **/
 
+/** Inicio Estilo da rifas **/
+
+#container_rifa {
+  padding: 50px;
+}
+
+#container_numeros {
+  padding: 50px;
+} 
+
+#titulo-numeros {
+  font-family:  Bebas neue;
+  text-shadow: 1px 1px 2px red; 
+  text-align: center;
+  font-size: 90px;
+  
+}
+
+@media(max-width: 425px) {
+  #titulo-numeros {
+  font-family:  Bebas neue;
+  text-shadow: 1px 1px 2px red; 
+  text-align: center;
+  font-size: 70px;
+}
+}
+
+#btn_numeros {
+  font-family:  Bebas neue;
+  margin: 5px;
+  box-shadow: 1px 1px 2px black; 
+}
 
 

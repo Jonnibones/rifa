@@ -3,20 +3,26 @@
 namespace DB;
 
 //Classe User
-class User extends Sql
+class Cartela extends Sql
 {
+	private $id_cartela;
 	private $id_user;
+	private $id_rifa;
 	private $id_rifa1;
 	private $id_rifa2;
 	private $id_rifa3;
-	private $nums_rifa;
-	private $nome_user;
-	private $email_user;
-	private $senha_user;
-	private $tel_user;
-	private $date_user;
-
+	private $nums_rifa1;
+	private $nums_rifa2;
+	
 	//Métodos getters and setters
+	public function getId_cartela()
+	{
+		return $this->id_cartela;
+	}
+	public function setId_cartela($value)
+	{
+		$this->id_cartela = $value;
+	}
 	public function getId_user()
 	{
 		return $this->id_user;
@@ -24,6 +30,14 @@ class User extends Sql
 	public function setId_user($value)
 	{
 		$this->id_user = $value;
+	}
+	public function getId_rifa()
+	{
+		return $this->id_rifa;
+	}
+	public function setId_rifa($value)
+	{
+		$this->id_rifa = $value;
 	}
 	public function getId_rifa1()
 	{
@@ -49,54 +63,31 @@ class User extends Sql
 	{
 		$this->id_rifa3 = $value;
 	}
-	public function getNums_rifa()
+	public function getNums_rifa1()
 	{
-		return $this->nums_rifa;
+		return $this->nums_rifa1;
 	}
-	public function setNums_rifa($value)
+	public function setNums_rifa1($value)
 	{
-		$this->nums_rifa = $value;
+		$this->nums_rifa1 = $value;
 	}
-	public function getNome_user()
+	public function getNums_rifa2()
 	{
-		return $this->nome_user;
+		return $this->nums_rifa2;
 	}
-	public function setNome_user($value)
+	public function setNums_rifa2($value)
 	{
-		$this->nome_user = $value;
+		$this->nums_rifa2 = $value;
 	}
-	public function getEmail_user()
+	public function getNums_rifa3()
 	{
-		return $this->email_user;
+		return $this->nums_rifa3;
 	}
-	public function setEmail_user($value)
+	public function setNums_rifa3($value)
 	{
-		$this->email_user = $value;
+		$this->nums_rifa3 = $value;
 	}
-	public function getSenha_user()
-	{
-		return $this->senha_user;
-	}
-	public function setSenha_user($value)
-	{
-		$this->senha_user = $value;
-	}
-	public function getTel_user()
-	{
-		return $this->tel_user;
-	}
-	public function setTel_user($value)
-	{
-		$this->tel_user = $value;
-	}
-	public function getDate_user()
-	{
-		return $this->date_user;
-	}
-	public function setDate_user($value)
-	{
-		$this->date_user = $value;
-	}
+	
 
 //Método responsável por inserir valores na tabela tb_user
 	public function insert_User()

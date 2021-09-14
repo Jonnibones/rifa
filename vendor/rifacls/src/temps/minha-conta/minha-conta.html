@@ -1,153 +1,187 @@
 <section>
 		<div id="container_minhaconta" class="container-fluid">
-			<center><h1 id="h1_entrar">Bem-vindo 
-        <?php  if(isset($_SESSION['dados_user'])){ echo "<br>". $_SESSION['dados_user'][0]['nome_user'];} ?></h1></center>
+			<center>
+        <h1 id="h1_entrar">Bem-vindo 
+          <?php  
+            // Verifica se a variável $_SESSION['dados_user'] está definida 
+            if(isset($_SESSION['dados_user']))
+            { 
+              //caso verdadeiro, exibe o nome do usuário logado
+              echo $_SESSION['dados_user'][0]['nome_user'];
+            } 
+          ?>
+        </h1>
+      </center>
 		</div>
 </section>
 
 
 
 <?php 
- if(isset($_SESSION['hidden']))
-{
-echo "<section hidden>";
-}else
-{
-  echo "<section>";
-} 
+   //Verifica se a variável $_SESSION['hidden'] está definida 
+   if(isset($_SESSION['hidden']))
+  {
+      //caso verdadeiro, esta section ficará oculta
+      echo "
+<section hidden>";
+      }else
+      {
+      echo "
+<section>";
+  } 
 ?>
-		
-		<div id="container_rifas" class="container-fluid">
+  <div id="container_rifas" class="container-fluid">
 			<div class="row">
 
-    <div class="col-sm">
-      <div class="alert alert-<?php if(isset($_SESSION['alert-log'])){echo $_SESSION['alert-log'];} ?>">
-         <?php
-    if(isset($_SESSION['msg-log']))
-    {
-      echo $_SESSION['msg-log'];
-      unset($_SESSION['msg-log']);
-      unset($_SESSION['alert-log']);
-    }
-    ?>
-      </div>
+        <div class="col-sm">
+              <!--O alert receberá a variável dependendo da ação do usuário-->
+              <div class="alert alert-<?php if(isset($_SESSION['alert-log'])){echo $_SESSION['alert-log'];} ?>">
+                 <?php
+                    //verifica se a variável $_SESSION['msg-log'] está definida
+                    if(isset($_SESSION['msg-log']))
+                    {
+                      //caso verdadeiro, será exibida uma mensagem de acordo com a ação do usuário
+                      echo $_SESSION['msg-log'];
+                      unset($_SESSION['msg-log']);
+                      unset($_SESSION['alert-log']);
+                    }
+                  ?>
+              </div>
 
-      <!--Formulário Login-->
-    	<center><h3 class="nome_rifa">Entrar</h3></center>
-   <form method="POST" action="vendor/rifacls/src/process/login_user.php">
+              <!--Formulário Login-->
+              <center><h3 class="nome_rifa">Entrar</h3></center>
+              <form method="POST" action="vendor/rifacls/src/process/login_user.php">
 
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email</label>
-    <input name="inp_login" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-  </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email</label>
+                  <input name="inp_login" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
 
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Senha</label>
-    <input name="inp_senha" type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Lembrar-me</label>
-  </div>
-  <button type="submit" name="btn_login" class="btn btn-success">Entrar</button>
-  <div class="mb-3">
-    <a href="#">Perdeu a senha?</a>
-  </div>
-</form>
-    </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Senha</label>
+                  <input name="inp_senha" type="password" class="form-control" id="exampleInputPassword1">
+                </div>
 
-    <div class="col-sm">
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Lembrar-me</label>
+                </div>
 
-        <div class="alert alert-<?php if(isset($_SESSION['alert-cad'])){echo $_SESSION['alert-cad'];} ?>">
-            <?php
-            if(isset($_SESSION['msg-cad']))
-            {
-              echo $_SESSION['msg-cad'];
-              unset($_SESSION['msg-cad']);
-              unset($_SESSION['alert-cad']);
-            }
-            ?>
+                <button type="submit" name="btn_login" class="btn btn-success">Entrar</button>
+
+                <div class="mb-3">
+                  <a href="#">Perdeu a senha?</a>
+                </div>
+
+              </form>
         </div>
 
-           <!--Formulário Cadastro-->
-      	<center><h3 class="nome_rifa">Cadastre-se</h3></center>
-        <form method="POST" action="vendor/rifacls/src/process/cadastrar_user.php">
+      <div class="col-sm">
 
-          <div class="mb-3">
-            <div class="mb-3">
-              <label for="exampleInputName" class="form-label">Nome</label>
-              <input type="text" name="inp_nome" class="form-control" id="exampleInputNome" aria-describedby="nameHelp">
-            </div>
-        	  <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email</label>
-              <input type="email" name="inp_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
-
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Crie uma senha</label>
-              <input type="password" name="inp_pass" class="form-control" id="exampleInputPassword1">
-            </div>
-            
-            <button type="submit" name="btn_cad" class="btn btn-primary">Cadastrar</button>
-            <div class="mb-3">
-            </div>
-
-        </form>
-    </div>
-
-  </div>
-		</div>
-	</section>
-
-
-
-<!--Formulário Minha conta-->
-  <?php  if(isset($_SESSION['hidden']))
-{
-echo "<section>";
-}else
-{
-  echo "<section hidden>";
-} 
-?>
-    <div id="container_rifas" class="container-fluid">
-      <div class="row">
-
-        <div class="col-sm">
           <div class="alert alert-<?php if(isset($_SESSION['alert-cad'])){echo $_SESSION['alert-cad'];} ?>">
               <?php
-              if(isset($_SESSION['msg-cad']))
-              {
-                echo $_SESSION['msg-cad'];
-                unset($_SESSION['msg-cad']);
-                unset($_SESSION['alert-cad']);
-              }
+                //verifica se a variável $_SESSION['msg-cad'] está definida
+                if(isset($_SESSION['msg-cad']))
+                {
+                  //caso verdadeiro, será exibida uma mensagem de acordo com a ação do usuário
+                  echo $_SESSION['msg-cad'];
+                  unset($_SESSION['msg-cad']);
+                  unset($_SESSION['alert-cad']);
+                }
               ?>
           </div>
-            <h3 id="h3_minhaconta">Minha conta</h3>
-            <div class="list-group">
-               <ul>
-                 <li class="list-group-item list-group-item-action"><a href="#" >Painel </a></li>
-                 <li class="list-group-item list-group-item-action"><a href="vendor/rifacls/src/process/minhas_rifas.php" >Minhas rifas</a></li>
-                 <li class="list-group-item list-group-item-action"><a href="#" >Adicionar telefone</a></li>
-                 <li class="list-group-item list-group-item-action"><a href="vendor/rifacls/src/process/sair.php" >Sair</a></li>
-               </ul>
-            </div>
+
+          <!--Formulário Cadastro-->
+        	<center><h3 class="nome_rifa">Cadastre-se</h3></center>
+          <form method="POST" action="vendor/rifacls/src/process/cadastrar_user.php">
+
+            <div class="mb-3">
+              <div class="mb-3">
+                <label for="exampleInputName" class="form-label">Nome</label>
+                <input type="text" name="inp_nome" class="form-control" id="exampleInputNome" aria-describedby="nameHelp">
+              </div>
+
+          	  <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <input type="email" name="inp_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Crie uma senha</label>
+                <input type="password" name="inp_pass" class="form-control" id="exampleInputPassword1">
+              </div>
+              
+              <button type="submit" name="btn_cad" class="btn btn-primary">Cadastrar</button>
+
+          </form>
+      </div>
+
+    </div>
+	</div>
+</section>
+
+
+
+<!--Minha conta-->
+  <?php 
+    //verifica se a variável $_SESSION['hidden'] está definida 
+    if(isset($_SESSION['hidden']))
+    {
+      echo " 
+<section>";
+    }else
+    {
+      //caso falso, esta section ficará oculta
+      echo " 
+<section hidden>";
+    } 
+?>
+  <div id="container_rifas" class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm">
+        <div class="alert alert-<?php if(isset($_SESSION['alert-cad'])){echo $_SESSION['alert-cad'];} ?>">
+          <?php
+          //verifica se a variável $_SESSION['msg-cad'] está definida
+          if(isset($_SESSION['msg-cad']))
+          {
+            //caso verdadeiro, será exibida uma mensagem de acordo com a ação do usuário
+            echo $_SESSION['msg-cad'];
+            unset($_SESSION['msg-cad']);
+            unset($_SESSION['alert-cad']);
+          }
+          ?>
         </div>
-         <?php if(!isset($_SESSION['minhas_rifas'])): ?> 
+
+        <h3 id="h3_minhaconta">Minha conta</h3>
+        <div class="list-group">
+           <ul>
+             <li class="list-group-item list-group-item-action"><a href="vendor/rifacls/src/process/minhas_rifas.php?id=true">Painel</a></li>
+             <li class="list-group-item list-group-item-action"><a href="vendor/rifacls/src/process/minhas_rifas.php" >Minhas rifas</a></li>
+             <li class="list-group-item list-group-item-action"><a href="#" >Adicionar telefone</a></li>
+             <li class="list-group-item list-group-item-action"><a href="vendor/rifacls/src/process/sair.php" >Sair</a></li>
+           </ul>
+        </div>
+      </div>
+
+         <?php 
+          //verifica se a variável $_SESSION['minhas-rifas'] não está definida
+          if(!isset($_SESSION['minhas_rifas'])): ?> 
           <div id="coluna_detalhes" class="col-sm" >
             <h3 id="h3_detalhesconta">Detalhes da conta</h3>
             <div class="list-group">
               <ul>
                 <?php 
+                //verifica se a variável $_SESSION['dados_user'] está definida
                 if(isset($_SESSION['dados_user']))
                 { 
+                  //caso verdadeiro, os dados do usuário logado serão exibidos
                   $cont = 0;
                   foreach($_SESSION['dados_user'] as $key)
                   {
-                  echo "<li class='list-group-item list-group-item-action'>Nome: ".$_SESSION['dados_user'][$cont]['nome_user']."</li>";
-                  echo "<li class='list-group-item list-group-item-action'>E-mail: ".$_SESSION['dados_user'][$cont]['email_user']."</li>";
-                  echo "<li class='list-group-item list-group-item-action'>Data de Registro: ".date('d-m-Y',strtotime($_SESSION['dados_user'][$cont]['date_user']))."</li>";
+                    echo "<li class='list-group-item list-group-item-action'>Nome: ".$_SESSION['dados_user'][$cont]['nome_user']."</li>";
+                    echo "<li class='list-group-item list-group-item-action'>E-mail: ".$_SESSION['dados_user'][$cont]['email_user']."</li>";
+                    echo "<li class='list-group-item list-group-item-action'>Data de Registro: ".date('d-m-Y',strtotime($_SESSION['dados_user'][$cont]['date_user']))."</li>";
                   }   
                   $cont++; 
                 }
@@ -159,20 +193,21 @@ echo "<section>";
 
           <?php
             $cont = 0;
+            //Lista de rifas associada ao usuário
             foreach($_SESSION['minhas_rifas'] as $key)
             {
-            echo "<div id='coluna_detalhes' class='col-sm'>
-              <h3 id='h3_detalhesconta'>Minhas rifas</h3>
-                <ul>
-                  <li class='list-group-item list-group-item-action'>Nome do Produto: ".$_SESSION['minhas_rifas'][$cont]['nome_prod']."</li>
-                <li class='list-group-item list-group-item-action'>Valor do número: ".$_SESSION['minhas_rifas'][$cont]['valor']."</li>
-                <li class='list-group-item list-group-item-action'> Data do Sorteio: ".date('d-m-Y', strtotime($_SESSION['minhas_rifas'][$cont]['date_exp']))."</li>
-                </ul>
-            </div>";
+              echo "
+              <div id='coluna_detalhes' class='col-sm'>
+                <h3 id='h3_detalhesconta'>Minhas rifas</h3>
+                  <ul>
+                    <li class='list-group-item list-group-item-action'>Nome do Produto: ".$_SESSION['minhas_rifas'][$cont]['nome_prod']."</li>
+                  <li class='list-group-item list-group-item-action'>Valor do número: ".$_SESSION['minhas_rifas'][$cont]['valor']."</li>
+                  <li class='list-group-item list-group-item-action'> Data do Sorteio: ".date('d-m-Y', strtotime($_SESSION['minhas_rifas'][$cont]['date_exp']))."</li>
+                  </ul>
+              </div>";
             }
             $cont++;
           ?>
-
           <?php endif; ?>
       </div>
     </div>

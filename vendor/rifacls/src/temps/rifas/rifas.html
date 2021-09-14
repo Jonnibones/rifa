@@ -1,0 +1,25 @@
+<!--Seção da imagem da rifa selecionada-->
+<section>
+		<div id="container_rifa" class="container-fluid">
+			<?php
+				$cont = $_GET['id'];
+				$imagem = $_SESSION['rifas'][$cont]['img_rifa'];
+				echo "<center><img class='img-fluid' src='data:image/png;base64, $imagem'></center>";	
+			?>	
+		</div>
+</section>
+
+<!--Seção da quantidade de números-->
+<section>
+		<div id="container_numeros" class="container-fluid">
+			<h1 id="titulo-numeros">Escolha um ou mais números.</h1>
+			<?php
+			$numeros = $_SESSION['rifas'][$cont]['qtd_num'];
+			for($i = 1; $i <= $numeros; $i++)
+			{
+				echo "<button id='btn_numeros' class='btn btn-info btn-lg btn-block'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</button>";
+			}
+			?>
+
+		</div>
+</section>

@@ -215,7 +215,7 @@ background-color: black;
 
 /** Container minha-conta **/
 #container_minhaconta {
-  background: #ff4635; /* Old browsers */
+background: #ff4635; /* Old browsers */
 background: -moz-linear-gradient(left, #ff4635 34%, #cf0404 99%); 
 background: -webkit-linear-gradient(left, #ff4635 34%,#cf0404 99%); 
 background: linear-gradient(to right, #ff4635 34%,#cf0404 99%); 
@@ -262,6 +262,7 @@ padding-top: 150px;
 
 #container_numeros {
   padding: 50px;
+  
 } 
 
 #titulo-numeros {
@@ -287,4 +288,11 @@ padding-top: 150px;
   box-shadow: 1px 1px 2px black; 
 }
 
+#container_botoes {
+   padding: 50px;
+}
+
+#a_btn {
+  display: none;
+}
 

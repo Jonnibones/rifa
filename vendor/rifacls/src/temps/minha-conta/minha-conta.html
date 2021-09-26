@@ -37,7 +37,7 @@
               <!--O alert receberá a variável dependendo da ação do usuário-->
               <div class="alert alert-<?php if(isset($_SESSION['alert-log'])){echo $_SESSION['alert-log'];} ?>">
                  <?php
-                    //verifica se a variável $_SESSION['msg-log'] está definida
+                    //verifica se a variável $_SESSION['msg'] está definida
                     if(isset($_SESSION['msg-log']))
                     {
                       //caso verdadeiro, será exibida uma mensagem de acordo com a ação do usuário
@@ -131,7 +131,7 @@
 <section>";
     }else
     {
-      //caso falso, esta section ficará oculta
+      //caso falso, o elemento section ficará oculta
       echo " 
 <section hidden>";
     } 
@@ -140,15 +140,15 @@
     <div class="row">
 
       <div class="col-sm">
-        <div class="alert alert-<?php if(isset($_SESSION['alert-cad'])){echo $_SESSION['alert-cad'];} ?>">
+        <div class="alert alert-<?php if(isset($_SESSION['alert-log'])){echo $_SESSION['alert-log'];} ?>">
           <?php
-          //verifica se a variável $_SESSION['msg-cad'] está definida
-          if(isset($_SESSION['msg-cad']))
+          //verifica se a variável $_SESSION['msg-log'] está definida
+          if(isset($_SESSION['msg-log']))
           {
             //caso verdadeiro, será exibida uma mensagem de acordo com a ação do usuário
-            echo $_SESSION['msg-cad'];
-            unset($_SESSION['msg-cad']);
-            unset($_SESSION['alert-cad']);
+            echo $_SESSION['msg-log'];
+            unset($_SESSION['msg-log']);
+            unset($_SESSION['alert-log']);
           }
           ?>
         </div>

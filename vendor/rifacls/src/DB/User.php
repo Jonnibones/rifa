@@ -196,7 +196,7 @@ class User extends Sql
 	public function getlist_Minharifa($id)
     {
     	$rifa = 1;
-        $stmt = $this->conn->prepare("SELECT nome_prod, valor, date_exp FROM bd_rifa.tb_user INNER JOIN bd_rifa.tb_rifa ON tb_user.id_rifa$rifa = tb_rifa.id_rifa WHERE id_user = ?");
+        $stmt = $this->conn->prepare("SELECT id_rifa, nome_prod, valor, date_exp FROM bd_rifa.tb_user INNER JOIN bd_rifa.tb_rifa ON tb_user.id_rifa$rifa = tb_rifa.id_rifa WHERE id_user = ?");
         $stmt->bindParam(1,$id,\PDO::PARAM_INT);
         $stmt->execute();
         if ($stmt->rowCount()) 

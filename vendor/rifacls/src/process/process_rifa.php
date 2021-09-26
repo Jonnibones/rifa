@@ -1,6 +1,6 @@
 <?php 
 
-//intancia a classe Rifa
+//instancia a classe Rifa
 $rifa = new DB\Rifa();
 
 //a variável $_SESSION['rifas'] recebe os dados do método getlist_Rifa()

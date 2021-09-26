@@ -1,4 +1,5 @@
 
+
 function showContent()
 {
   var x = document.getElementById("descr_produto");
@@ -10,3 +11,11 @@ function showContent()
     x.style.display = "none";
   }
 }
+
+function disableButton()
+{
+
+	document.getElementById('btn_numeros3').disabled = true;
+
+
+} 

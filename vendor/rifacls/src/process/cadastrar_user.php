@@ -23,7 +23,7 @@ if(isset($_POST['btn_cad']))
 		$user->setEmail_user($email);
 		$user->setSenha_user(password_hash($pass, PASSWORD_DEFAULT));
 
-		// a variável $_SESSION['msg-cad'] recebe o valor do método insertUser
+		// a variável $_SESSION['msg-log'] recebe o valor do método insertUser
 		$_SESSION['msg-cad'] = $user->insert_User();
 
 		//verifica se o registro foi inserido

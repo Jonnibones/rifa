@@ -12,28 +12,30 @@
 
 		<div id="container_rifas" class="container-fluid">
 			<div class="row">
-        <?php        
-        if(isset($_SESSION['rifas']))
-        {
-            $cont = 0;
-            foreach($_SESSION['rifas'] as $key)
-            {
-              $imagem = $_SESSION['rifas'][$cont]['img_rifa'];
-              echo "
-              <div class='col-sm'>
-              	<h3 id='nome_produto'>".$_SESSION['rifas'][$cont]['nome_prod']."</h3>
-                <center><img class='img-fluid' src='data:image/png;base64, $imagem'></center>
-                <center><button onclick='showContent()' id='btn_show' type='button' class='btn btn-primary'>Detalhes</button></center>
-                <div id='descr_produto'><center><p>".$_SESSION['rifas'][$cont]['descr_prod']."</p></center></div>
-                <center><a href='rifas?id=$cont'><button name='btn_comprar' id='btn_comprar' type='button' class='btn btn-success'>Comprar número</button></a></center>
-                <center><p id='data_sorteio'>Data do sorteio: " .date('d-m-Y', strtotime($_SESSION['rifas'][$cont]['date_exp']))."</p></center>
-              </div>";
-              $cont++;
-            }
-        }else
-        {
-          echo "<h3>Nenhuma rifa disponível.</h3>";
-        } 
+        <?php       
+         
+          if(isset($_SESSION['rifas']))
+          {
+              $cont = 0;
+              foreach($_SESSION['rifas'] as $key)
+              {
+                $imagem = $_SESSION['rifas'][$cont]['img_rifa'];
+                $id = $_SESSION['rifas'][$cont]['id_rifa'];
+                echo "
+                <div class='col-sm'>
+                  <h3 id='nome_produto'>".$_SESSION['rifas'][$cont]['nome_prod']."</h3>
+                  <center><img class='img-fluid' src='data:image/png;base64, $imagem'></center>
+                  <center><button onclick='showContent()' id='btn_show' type='button' class='btn btn-primary'>Detalhes</button></center>
+                  <div id='descr_produto'><center><p>".$_SESSION['rifas'][$cont]['descr_prod']."</p></center></div>
+                  <center><a href='rifas?id=$id&cont=$cont'><button name='btn_comprar' id='btn_comprar' type='button' class='btn btn-success'>Comprar número</button></a></center>
+                  <center><p id='data_sorteio'>Data do sorteio: " .date('d-m-Y', strtotime($_SESSION['rifas'][$cont]['date_exp']))."</p></center>
+                </div>";
+                $cont++;
+              }
+          }else
+          {
+            echo "<h3>Nenhuma rifa disponível.</h3>";
+          } 
         ?>
 
       </div>

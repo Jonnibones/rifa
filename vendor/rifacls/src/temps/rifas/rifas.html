@@ -1,25 +1,87 @@
+<?php
+
+	//Captura o valor do id da rifa selecionada e armazena no navegador do usuário
+	if(isset($_GET['id']))
+	{
+		setcookie("id");
+		$_COOKIE["id"] = $_GET['id'];
+	}
+
+	//Captura os números que que foram selecionados e armazena no navegador do usuário
+	if(isset($_SESSION['numeros']))
+	{
+		setcookie("numeros");
+		$_COOKIE["numeros"] = $_SESSION['numeros'];
+		//unset($_SESSION['numeros']);
+		//var_dump($_COOKIE["numeros"]);
+		
+		//var_dump($_SESSION);
+	}
+	
+?>
+
 <!--Seção da imagem da rifa selecionada-->
 <section>
-		<div id="container_rifa" class="container-fluid">
-			<?php
-				$cont = $_GET['id'];
-				$imagem = $_SESSION['rifas'][$cont]['img_rifa'];
-				echo "<center><img class='img-fluid' src='data:image/png;base64, $imagem'></center>";	
-			?>	
-		</div>
+	<div id="container_rifa" class="container-fluid">
+		
+		<?php
+			//Exibição da imagem da rifa
+			$cont = $_GET['cont'];
+			$imagem = $_SESSION['rifas'][$cont]['img_rifa'];
+			echo "<center><img class='img-fluid' src='data:image/png;base64, $imagem'></center>";	
+		?>
+
+	</div>
 </section>
 
 <!--Seção da quantidade de números-->
 <section>
-		<div id="container_numeros" class="container-fluid">
-			<h1 id="titulo-numeros">Escolha um ou mais números.</h1>
-			<?php
+
+	<div class="alert alert-<?php if(isset($_SESSION['alert-num'])){echo $_SESSION['alert-num'];} ?>">
+		<?php
+		   //verifica se a variável $_SESSION['msg-num'] está definida
+		   if(isset($_SESSION['msg-num']))
+		   {
+			 //caso verdadeiro, será exibida uma mensagem de quando o usuário seleciona um número
+			 echo $_SESSION['msg-num'];
+			 unset($_SESSION['msg-num']);
+			 unset($_SESSION['alert-num']);
+		   }
+		 ?>
+	</div>
+
+
+
+	<div id="container_numeros" class="container-fluid">
+		<h1 id="titulo-numeros">Escolha um ou mais números.</h1>
+		<?php
+
+			//Exibição da quantidade de números disponíveis em botões
+			$id = $_SESSION['rifas'][$cont]['id_rifa'];
 			$numeros = $_SESSION['rifas'][$cont]['qtd_num'];
+			$disabl = "";
+			$displ = "";
+
 			for($i = 1; $i <= $numeros; $i++)
 			{
-				echo "<button id='btn_numeros' class='btn btn-info btn-lg btn-block'>".str_pad($i, 2, '0', STR_PAD_LEFT)."</button>";
+				//Verifica se algum botão ja foi clicado e se o número clicado existe na variável $_SESSION['numeros']
+				if(isset($_SESSION['numeros']) and in_array($i,$_SESSION['numeros']) == true)
+				{
+					$disabl = $_SESSION['disabled'];
+					$displ = "a_btn";
+				}
+					echo "<a id='$displ' href='vendor/rifacls/src/process/numeros_rifa.php?id=$id&num=$i&cont=$cont'
+					title='Clique para escolher o número.'><button id='btn_numeros' 
+					class='btn btn-info btn-lg btn-block' $disabl>".str_pad($i, 2, '0', STR_PAD_LEFT)."</button></a>";
+					$disabl = "";
+					$displ = "";
 			}
-			?>
+		?>
 
+		<div id="container_botoes" class="container-fluid">
+			<a href=""><button class="btn btn-success">Comprar números</button></a>
+			<a href=""><button class="btn btn-danger">Cancelar</button></a>
 		</div>
+
+	</div>
 </section>

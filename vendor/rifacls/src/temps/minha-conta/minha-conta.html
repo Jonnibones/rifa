@@ -1,8 +1,10 @@
 <section>
+  
 		<div id="container_minhaconta" class="container-fluid">
 			<center>
         <h1 id="h1_entrar">Bem-vindo 
-          <?php  
+          <?php
+           
             // Verifica se a variável $_SESSION['dados_user'] está definida 
             if(isset($_SESSION['dados_user']))
             { 
@@ -18,7 +20,7 @@
 
 
 <?php 
-   //Verifica se a variável $_SESSION['hidden'] está definida 
+   //Verifica se a variável $_SESSION['hidden'] está definida
    if(isset($_SESSION['hidden']))
   {
       //caso verdadeiro, esta section ficará oculta
@@ -87,6 +89,7 @@
                   echo $_SESSION['msg-cad'];
                   unset($_SESSION['msg-cad']);
                   unset($_SESSION['alert-cad']);
+                  
                 }
               ?>
           </div>

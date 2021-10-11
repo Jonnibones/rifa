@@ -2,20 +2,36 @@
 
 function showContent()
 {
+
   var x = document.getElementById("descr_produto");
   if (x.style.display === "none") 
   {
+
     x.style.display = "block";
+
   }else 
   {
+
     x.style.display = "none";
+    
   }
+
 }
 
-function disableButton()
+function Sweet()
 {
+  var sweet = document.getElementById("sweet").textContent;
 
-	document.getElementById('btn_numeros3').disabled = true;
+  if(sweet == 'numeros') 
+  {
+    swal("numeros");
+  }
 
+  if(sweet == 'dados')
+  {
+    swal("dados");
+  }
+  
 
-} 
+}
+

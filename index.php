@@ -26,6 +26,11 @@ $app->get('/rifas', function()
 	require __DIR__.'/vendor/rifacls/src/temps/rifas/rifas.html';
 });
 
+$app->get('/pagamento', function() 
+{
+	require __DIR__.'/vendor/rifacls/src/temps/pagamento/pagamento.html';
+});
+
 $app->run();
 
 //carregar o rodapé

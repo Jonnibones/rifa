@@ -292,8 +292,24 @@ padding-top: 150px;
    padding: 50px;
 }
 
-a[disabled="disabled"] {
-  pointer-events: none;
+#a_btn {
+  display: none;
 }
 
+/** Fim Estilo da minha-conta **/
+
+/** Início Estilo da pagamento **/
+
+#container_pagamento {
+background: #ff4635; /* Old browsers */
+background: -moz-linear-gradient(left, #ff4635 34%, #cf0404 99%); 
+background: -webkit-linear-gradient(left, #ff4635 34%,#cf0404 99%); 
+background: linear-gradient(to right, #ff4635 34%,#cf0404 99%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff4635', endColorstr='#cf0404',GradientType=1 ); 
+max-width: 100%;
+height: 450px;
+float: none;
+display: block;
+padding-top: 150px;
+}
 

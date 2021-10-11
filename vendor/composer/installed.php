@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '1aca767ba7c311537dd4d20ca2acd467c3878592',
+        'reference' => '2ca477b81f53f23b9e2358a1986440457209f289',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '1aca767ba7c311537dd4d20ca2acd467c3878592',
+            'reference' => '2ca477b81f53f23b9e2358a1986440457209f289',
             'dev_requirement' => false,
         ),
         'phpmailer/phpmailer' => array(
@@ -26,15 +26,6 @@
             'install_path' => __DIR__ . '/../phpmailer/phpmailer',
             'aliases' => array(),
             'reference' => 'b18cb98131bd83103ccb26a888fdfe3177b8a663',
-            'dev_requirement' => false,
-        ),
-        'rain/raintpl' => array(
-            'pretty_version' => '3.0.0',
-            'version' => '3.0.0.0',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../rain/raintpl',
-            'aliases' => array(),
-            'reference' => '5bfdf4602b8adb0e80b222fa29ac559aa9c06abf',
             'dev_requirement' => false,
         ),
         'slim/slim' => array(

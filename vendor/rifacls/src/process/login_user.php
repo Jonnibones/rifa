@@ -30,14 +30,25 @@ if(isset($_POST['btn_login']))
 			$_SESSION['alert-log'] = "success";
 			$_SESSION['hidden'] = true;
 			$_SESSION['dados_user'] = $user->getuserby_Login($user->getEmail_user());
+			$_SESSION['msg-num'] = "Usuário logado!";
+			$_SESSION['alert-num'] = "success";
+			header('Location: http://localhost/rifa2/minha-conta');
+
 		}
 		else
 		{
 			$_SESSION['msg-log'] = "Login e(ou) senha incorretos.";
 			//variável recebe o valor para o estilo da div
 			$_SESSION['alert-log'] = "danger";
+			header('Location: http://localhost/rifa2/minha-conta');
 		}
-		header('Location:http://localhost/rifa2/minha-conta');
+		//Verifica se o usuário irá acessar a página com a rifa selecionada e faz o redirecionamento
+		if (isset($_SESSION['redirect']))
+			{
+				$redirect = $_SESSION['redirect'];
+				header("Location:$redirect");
+			}
+		
 	}
 	else
 	{

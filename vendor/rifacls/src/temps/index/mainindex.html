@@ -1,10 +1,22 @@
-<section>
+<?php
+
+  //Verifica se o usuário havia selecionado algum número. Caso verdadeiro estes números são cancelados
+  if(isset($_SESSION['numeros']))
+  {
+    unset($_SESSION['numeros']);
+  }
+  var_dump($_SERVER);
+
+?>
+  <!--Seção de Boas Vindas-->
+  <section>
 		<div id="container_bemvindo" class="container-fluid">
 			<h1 id="h1-bemvindo">Bem-vindo(a) ao seu site de rifas!</h1>
 			<center><img id="img_bemvindo" class="img-fluid" src="\rifa2\vendor\rifacls\src\temps\images/trevo.png"></center>
 		</div>
-	</section>
-
+  </section>
+  
+  <!--Seção das Rifas disponíveis-->
 	<section>
 		<div id="container_conferir" class="container-fluid" >		
 			<h1 class="titulo_conferir">Confira abaixo as rifas diponíveis:</h1>
@@ -13,7 +25,8 @@
 		<div id="container_rifas" class="container-fluid">
 			<div class="row">
         <?php       
-         
+
+          //Verifica se existe alguma rifa dísponivel e exibe-as.
           if(isset($_SESSION['rifas']))
           {
               $cont = 0;
@@ -32,7 +45,8 @@
                 </div>";
                 $cont++;
               }
-          }else
+          }
+          else
           {
             echo "<h3>Nenhuma rifa disponível.</h3>";
           } 
@@ -42,6 +56,7 @@
 		</div>
 	</section>
 
+  <!--Seção dos Ícones-->
 	<section>
 		<div id="container_icones" class="container-fluid">
 			<div class="row">

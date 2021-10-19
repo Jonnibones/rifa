@@ -1,5 +1,5 @@
 
-
+//Função responsável por exibir os detalhes da rifa
 function showContent()
 {
 
@@ -9,7 +9,8 @@ function showContent()
 
     x.style.display = "block";
 
-  }else 
+  }
+  else 
   {
 
     x.style.display = "none";
@@ -18,20 +19,39 @@ function showContent()
 
 }
 
+//Função responsável por exibir os modais para acessar a área de pagamento de acordo com o status do usuário
 function Sweet()
 {
-  var sweet = document.getElementById("sweet").textContent;
 
-  if(sweet == 'numeros') 
-  {
-    swal("numeros");
-  }
+	if (!document.getElementById("p_num_sel") && !document.getElementById("p_user_log") && document.getElementById("p_sweet") )
+	{
+		swal("Selecione um número e faça login para acessar a área de pagamento.", "", "warning");
+	}
+	
+	if (!document.getElementById("p_num_sel") && document.getElementById("p_user_log") && document.getElementById("p_sweet") ) 
+	{
+		swal("Selecione algum número para acessar a área de pagamento.", "", "warning");
+	}
 
-  if(sweet == 'dados')
-  {
-    swal("dados");
-  }
-  
-
+	if (document.getElementById("p_num_sel") && !document.getElementById("p_user_log") && document.getElementById("p_sweet")  )
+	{
+		swal({ 
+				title: "Você precisa estar logado para acessar a área de pagamento. ",
+				text: " Deseja acessar a área de login?",
+				icon: "warning",
+				buttons: true,
+			})
+			.then((willDelete) => {
+				if (willDelete) 
+				{
+					window.location.href = "minha-conta";
+				} 
+				else 
+				{
+					exit();
+				}
+			});
+	}
+	
 }
 

@@ -1,10 +1,11 @@
 <?php
-session_start();
+  session_start();
 ?>
 
 <!--Cabeçalho-->
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -13,9 +14,12 @@ session_start();
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Rifabr</title>
   </head>
-  <body>
+
+  <body onload="Sweet()">
+    
     <header>
       <section>
+
         <div class="header">
             <a href="/rifa2" class="logo">Rifabr<span id="copy">&copy;</span></a>
             <div class="header-right">
@@ -23,11 +27,11 @@ session_start();
               <a href="user" id="contato">Contato</a>
               
               <?php
-              //verifica se a variável $_SESSION['dados_user'] está definida 
+                //verifica se a variável $_SESSION['dados_user'] está definida 
                 if(isset($_SESSION['dados_user']))
                 {
                   //caso verdadeiro, será exibido os links de minha conta e sair
-                  echo "<a href='minha-conta' id='minha-conta'>Minha conta</a>";
+                  echo "<a href='minha-conta' id='minha-conta'>".$_SESSION['dados_user'][0]['nome_user']."</a>";
                   echo "<a href='vendor/rifacls/src/process/sair.php' id='sair'>Sair</a>";
                 }
                 else
@@ -39,6 +43,7 @@ session_start();
             
             </div>
         </div>
+
       </section>
     </header>
 

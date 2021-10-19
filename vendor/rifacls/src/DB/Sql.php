@@ -11,8 +11,9 @@ class Sql
 	const USERNAME = "root";
 	const PASSWORD = "";
 	const DBNAME = "bd_rifa";
-	protected $conn; 
+	protected $conn;
 
+	// Método construtor para iniciar a conexão
 	function __construct()
 	{
 		$this->conn = new \PDO("mysql:

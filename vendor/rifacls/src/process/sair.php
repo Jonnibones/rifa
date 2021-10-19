@@ -13,6 +13,7 @@ if (isset($_SESSION['dados_user']))
 	unset($_SESSION['hidden']);
 	unset($_SESSION['minhas_rifas']);
 	unset($_SESSION['dados_user']);
+	unset($_SESSION['redirect']);
 
 	//mensagem de sucesso
 	$_SESSION['msg-log'] = "Deslogado com sucesso!";
@@ -20,6 +21,7 @@ if (isset($_SESSION['dados_user']))
 	$_SESSION['alert-log'] = "success";
 	//redireciona para a mesma página
 	header('Location:http://localhost/rifa2/minha-conta');
+	
 }else
 {
 	$_SESSION['msg-log'] = "Acesso negado!";

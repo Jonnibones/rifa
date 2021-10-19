@@ -1,3 +1,13 @@
+<?php
+
+	//Verifica se o usuário está tentando acessar a página de uma rifa através da barra de endereços
+	if(!isset($_SERVER['HTTP_REFERER']))
+	{
+		exit("<h1 id='h1_retornar'><a href='http://localhost/rifa2/' id='a_mainpage'>Ir para a página principal</a></h1>");
+	}
+	$_SESSION['redirect'] = $_SERVER['HTTP_REFERER'];
+
+?>
 
 <!--Seção das informações do usuário-->
 <section>
@@ -6,39 +16,54 @@
 
 			<?php
 			
-			if(isset($_SESSION['sweet']))
-			{
-				echo "<span id='span_sweet'>".$_SESSION['sweet']."</span>";
-				unset($_SESSION['sweet']);
-			}
+				if(isset($_SESSION['sweet']))
+				{
+					echo "<p hidden id='p_sweet'>".$_SESSION['sweet']."</p>";
+					unset($_SESSION['sweet']);
+				}
 			
 			?>
 
 			<div class="col-sm">
-				<h3>Números selecionados: </h3>
-				<p id="p_num_sel"><?php 
+
+				<!--Div das informações das ações do usuário-->
+				<div class="alert alert-<?php if(isset($_SESSION['alert-num'])){echo $_SESSION['alert-num'];} ?>">
+					<?php
+						//verifica se a variável $_SESSION['msg-num'] está definida
+						if(isset($_SESSION['msg-num']))
+						{
+							//caso verdadeiro, será exibida uma mensagem de quando o usuário seleciona um número
+							echo $_SESSION['msg-num'];
+							unset($_SESSION['msg-num']);
+							unset($_SESSION['alert-num']);
+						}
+						?>
+				</div>
+				
+				<?php 
+					//Verifica se o usuário selecionou algum número e exibe-os.
 					if(isset($_SESSION['numeros']))
 					{
+						echo "<h4>Números selecionados: </h4>";
 						foreach($_SESSION['numeros'] as $valor)
 						{
-							echo $valor;
-							echo " ";
+							echo "<span id='p_num_sel'>".substr_replace($valor," ", 3)."</span>";
 						}
-				 	}?>
-				</p>
+					}
+				
+				?>
+
 			</div>
 
-			<div class="col-sm">
-				<h3>Usuário Logado: </h3>
-				<p id="p_user_log"><?php 
-					if(isset($_SESSION['dados_user']))
-					{
-						echo $_SESSION['dados_user'][0]['nome_user'];
-				 	}?>
-				</p>
-			</div>
+			<?php
+				//Verifica se o usuário está logado
+				if(isset($_SESSION['dados_user']))
+				{
+					echo "<p hidden id='p_user_log'>".$_SESSION['dados_user'][0]['nome_user']."</p>";
+				}
 
-			
+			?>
+
 		</div>
 	</div>
 </section>
@@ -62,21 +87,6 @@
 <!--Seção da quantidade de números-->
 <section>
 
-	<div class="alert alert-<?php if(isset($_SESSION['alert-num'])){echo $_SESSION['alert-num'];} ?>">
-		<?php
-		   //verifica se a variável $_SESSION['msg-num'] está definida
-		   if(isset($_SESSION['msg-num']))
-		   {
-			 //caso verdadeiro, será exibida uma mensagem de quando o usuário seleciona um número
-			 echo $_SESSION['msg-num'];
-			 unset($_SESSION['msg-num']);
-			 unset($_SESSION['alert-num']);
-		   }
-		?>
-	</div>
-
-
-
 	<div id="container_numeros" class="container-fluid">
 		<h1 id="titulo-numeros">Escolha um ou mais números.</h1>
 		<?php
@@ -88,14 +98,16 @@
 
 			for($i = 1; $i <= $numeros; $i++)
 			{
-				//Verifica se algum botão já foi clicado e se o número clicado existe na variável $_SESSION['numeros']
+				//Verifica se algum botão já foi clicado e se o número clicado existe no array $_SESSION['numeros']
 				if(isset($_SESSION['numeros']) and in_array($i,$_SESSION['numeros']) == true)
 				{
 					$id_a = "a_btn";
 				}
+				
 				echo "<a id='$id_a' href='vendor/rifacls/src/process/numeros_rifa.php?id=$id&num=$i&cont=$cont'
 				title='Clique para escolher o número.'><button id='btn_numeros' 
 				class='btn btn-info btn-lg btn-block' >".str_pad($i, 2, '0', STR_PAD_LEFT)."</button></a>";
+
 				$id_a = "";
 			}
 			
@@ -107,7 +119,7 @@
 					<button class='btn btn-success'>Comprar números</button></a>
 
 					<a href='vendor/rifacls/src/process/numeros_rifa.php?cancelar=true&id=$id&cont=$cont'>
-					<button id='btn_cancelar' class='btn btn-danger'>Cancelar</button></a>
+					<button id='btn_cancelar' class='btn btn-danger'>Cancelar números</button></a>
 
 				</div>";
 		?>
@@ -115,47 +127,6 @@
 	</div>
 	
 </section>
-
-<script>
-	document.addEventListener('DOMContentLoaded', function(){
-
-		var span_sweet = document.getElementById("span_sweet").textContent;
-		var num_sel = document.getElementById("p_num_sel").textContent;
-		var user_log = document.getElementById("p_user_log").textContent;
-
-		if (num_sel == "				" && user_log == "				" && span_sweet == true ) {
-			swal("Selecione um número e faça login para acessar a área de pagamento.", "", "warning");
-		}
-		
-		if (num_sel == "				" && user_log != "				" && span_sweet == true  ) 
-		{
-			swal("Selecione algum número para acessar a área de pagamento.", "", "warning");
-		}
-
-		if (num_sel != "				" && user_log == "				" && span_sweet == true  )
-		{
-			swal({ 
-					title: "Você precisa estar logado para acessar a área de pagamento. ",
-					text: " Deseja acessar a área de login?",
-					icon: "warning",
-					buttons: true,
-				})
-				.then((willDelete) => {
-				if (willDelete) 
-				{
-					window.location.href = "minha-conta";
-				} 
-				else 
-				{
-					exit();
-				}
-				});
-		}
-
-	},false);
-	
-</script>
-
 <script type='text/javascript' src='\rifa2\vendor\rifacls\src\temps\js\main.js'></script>
 
 

@@ -55,3 +55,23 @@ function Sweet()
 	
 }
 
+//Função responsável pelo aviso de mudança de página
+
+function Notificar()
+{
+	if (document.getElementById("notificar")) 
+	{
+		var linklogo = document.getElementById("logo");
+		var linkhome = document.getElementById("home");
+		
+		var confirma = confirm("Deseja realmente sair da página? Os números selecionados serão cancelados.");
+
+		if (confirma == false) 
+		{
+			linklogo.setAttribute("href", "");
+			linkhome.setAttribute("href", "");
+		}
+	}
+	
+}
+

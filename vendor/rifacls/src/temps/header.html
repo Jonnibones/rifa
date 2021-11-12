@@ -1,6 +1,3 @@
-<?php
-  session_start();
-?>
 
 <!--Cabeçalho-->
 <!DOCTYPE html>
@@ -20,10 +17,21 @@
     <header>
       <section>
 
+        <?php
+
+          session_start();
+
+          if(isset($_SESSION['numeros']))
+          {
+            echo "<span hidden id='notificar'></span>";
+          }
+
+        ?>
+
         <div class="header">
-            <a href="/rifa2" class="logo">Rifabr<span id="copy">&copy;</span></a>
+            <a id="logo" onclick="Notificar()" href="/rifa2?redirect=true" class="logo">Rifabr<span id="copy">&copy;</span></a>
             <div class="header-right">
-              <a href="/rifa2" id="home">Home</a>
+              <a id="home" onclick="Notificar()" href="/rifa2">Home</a>
               <a href="user" id="contato">Contato</a>
               
               <?php

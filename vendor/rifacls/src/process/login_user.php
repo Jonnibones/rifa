@@ -42,6 +42,7 @@ if(isset($_POST['btn_login']))
 			$_SESSION['alert-log'] = "danger";
 			header('Location: http://localhost/rifa2/minha-conta');
 		}
+		
 		//Verifica se o usuário irá acessar a página com a rifa selecionada e faz o redirecionamento
 		if (isset($_SESSION['redirect']))
 			{

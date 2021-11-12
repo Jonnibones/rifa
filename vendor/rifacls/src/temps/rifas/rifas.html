@@ -5,6 +5,7 @@
 	{
 		exit("<h1 id='h1_retornar'><a href='http://localhost/rifa2/' id='a_mainpage'>Ir para a página principal</a></h1>");
 	}
+	
 	$_SESSION['redirect'] = $_SERVER['HTTP_REFERER'];
 
 ?>
@@ -29,6 +30,7 @@
 				<!--Div das informações das ações do usuário-->
 				<div class="alert alert-<?php if(isset($_SESSION['alert-num'])){echo $_SESSION['alert-num'];} ?>">
 					<?php
+
 						//verifica se a variável $_SESSION['msg-num'] está definida
 						if(isset($_SESSION['msg-num']))
 						{
@@ -37,7 +39,8 @@
 							unset($_SESSION['msg-num']);
 							unset($_SESSION['alert-num']);
 						}
-						?>
+
+					?>
 				</div>
 				
 				<?php 
